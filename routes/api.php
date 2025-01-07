@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\StoresController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
+use App\Http\Controllers\Api\SubCategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +19,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(BrandsController::class)->group(function () {
+    Route::get('/brands',               'index');
+    Route::get('/brands/{id}',          'show');
+});
+
+Route::controller(CategoriesController::class)->group(function () {
+    Route::get('/categories',          'index');
+    Route::get('/categories/{id}',     'show');
+});
+
+Route::controller(SubCategoriesController::class)->group(function () {
+    Route::get('/subcategories',          'index');
+    Route::get('/subcategories/{id}',     'show');
+});
+
 Route::controller(EnterprisesController::class)->group(function () {
     Route::get('/enterprises',          'index');
     Route::put('/enterprises/{id}',     'update');
 });
+
 
 Route::controller(StoresController::class)->group(function () {
     Route::get('/stores',               'index');
