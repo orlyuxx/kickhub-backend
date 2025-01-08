@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Enterprises;
+use App\Models\Products;
+use App\Http\Requests\ProductsRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EnterprisesController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Enterprises::all(); 
+        return Products::all(); 
+        
     }
 
     /**
@@ -27,9 +29,19 @@ class EnterprisesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductsRequest $request)
     {
-        //
+        // Validate incoming request data via ProductRequest
+        $validated = $request->validated();
+
+        // Create a new product
+        $product = Products::create($validated);
+
+        // Return a success response with the created product
+        return response()->json([
+            'message' => 'Product created successfully!',
+            'product' => $product
+        ]);
     }
 
     /**
@@ -37,7 +49,7 @@ class EnterprisesController extends Controller
      */
     public function show(string $id)
     {
-        
+        return $product = Products::findOrFail($id);
     }
 
     /**
