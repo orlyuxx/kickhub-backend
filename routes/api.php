@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\StoresController;
+use App\Http\Controllers\Api\VendorsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
 use App\Http\Controllers\Api\SubCategoriesController;
@@ -32,6 +33,11 @@ Route::controller(CategoriesController::class)->group(function () {
 Route::controller(SubCategoriesController::class)->group(function () {
     Route::get('/subcategories',          'index');
     Route::get('/subcategories/{id}',     'show');
+});
+
+Route::controller(VendorsController::class)->group(function () {
+    Route::get('/vendors',          'index');
+    Route::get('/vendors/{id}',     'show');
 });
 
 Route::controller(EnterprisesController::class)->group(function () {
