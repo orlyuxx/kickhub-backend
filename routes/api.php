@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\VendorsController;
 use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\CustomersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
 use App\Http\Controllers\Api\SubCategoriesController;
@@ -21,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::controller(CustomersController::class)->group(function () {
+    Route::get('/customers',              'index');
+    Route::get('/customers/{id}',         'show');
+    Route::post('/customers',             'store');
+});
+
 
 Route::controller(BrandsController::class)->group(function () {
     Route::get('/brands',               'index');
