@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
 use App\Http\Controllers\Api\SubCategoriesController;
+use App\Http\Controllers\Api\ProductImagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,14 @@ Route::controller(VendorsController::class)->group(function () {
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/products',          'index');
     Route::get('/products/{id}',     'show');
-    Route::post('/products',              'store');
+    Route::post('/products',         'store');
+});
+
+Route::controller(ProductImagesController::class)->group(function () {
+    Route::get('/product-images',          'index');
+    // Route::get('/product-images/{id}',     'show');
+    Route::get('/product-images/{id}',     'getImagesByProduct');
+    Route::put('/product-images',          'store');
 });
 
 Route::controller(EnterprisesController::class)->group(function () {
@@ -55,7 +63,7 @@ Route::controller(EnterprisesController::class)->group(function () {
 
 Route::controller(StoresController::class)->group(function () {
     Route::get('/stores',               'index');
-    Route::get('/stores/{id}',        'show');
+    Route::get('/stores/{id}',          'show');
     Route::post('/stores',              'store');
     Route::put('/stores/{id}',          'update');
     Route::delete('/stores/{id}',       'destroy');
