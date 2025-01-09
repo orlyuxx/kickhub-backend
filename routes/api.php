@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\VendorsController;
 use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\ReordersController;
 use App\Http\Controllers\Api\CustomersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
@@ -68,13 +69,19 @@ Route::controller(EnterprisesController::class)->group(function () {
     Route::put('/enterprises/{id}',     'update');
 });
 
-
 Route::controller(StoresController::class)->group(function () {
     Route::get('/stores',               'index');
     Route::get('/stores/{id}',          'show');
     Route::post('/stores',              'store');
     Route::put('/stores/{id}',          'update');
     Route::delete('/stores/{id}',       'destroy');
+});
+
+Route::controller(ReordersController::class)->group(function () {
+    Route::get('/reorders',               'index');
+    Route::get('/reorders/{id}',          'show');
+    Route::post('/reorders',              'store');
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

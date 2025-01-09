@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Products;
-use App\Http\Requests\ProductsRequest;
+use App\Models\Reorders;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReordersRequest;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ReordersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Products::all(); 
-        
+        return Reorders::all(); 
     }
 
     /**
@@ -29,26 +28,26 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductsRequest $request)
+    public function store(ReordersRequest $request)
     {
+
         $validated = $request->validated();
 
         // Create a new product
-        $product = Products::create($validated);
+        $reorder = Reorders::create($validated);
 
-        // Return a success response with the created product
+        // Return the response with the created reorder data
         return response()->json([
-            'message' => 'Product created successfully!',
-            'product' => $product
-        ]);
+            'message' => 'Reorder successfully created!',
+            'data' => $reorder
+        ], 201); // 201 Created status code
     }
-
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        return $product = Products::findOrFail($id);
+        return $product = Reorders::findOrFail($id);
     }
 
     /**
