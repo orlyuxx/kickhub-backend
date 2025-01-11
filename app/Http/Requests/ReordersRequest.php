@@ -13,7 +13,6 @@ class ReordersRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // You can add logic here to check if the user is authorized
         return true;
     }
 

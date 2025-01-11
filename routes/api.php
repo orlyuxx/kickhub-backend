@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\BrandsController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\VendorsController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Api\ReordersController;
 use App\Http\Controllers\Api\CustomersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
+use App\Http\Controllers\Api\ShoppingCartsController;
 use App\Http\Controllers\Api\SubCategoriesController;
 use App\Http\Controllers\Api\ProductImagesController;
 use Illuminate\Support\Facades\Route;
@@ -24,12 +26,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(UsersController::class)->group(function () {
+    Route::get('/users',              'index');
+    Route::get('/users/{id}',         'show');
+});
+
 Route::controller(CustomersController::class)->group(function () {
     Route::get('/customers',              'index');
     Route::get('/customers/{id}',         'show');
     Route::post('/customers',             'store');
 });
 
+Route::controller(ShoppingCartsController::class)->group(function () {
+    Route::get('/carts',              'index');
+    Route::get('/carts/{id}',         'show');
+    Route::post('/carts',             'store');
+});
 
 Route::controller(BrandsController::class)->group(function () {
     Route::get('/brands',               'index');
