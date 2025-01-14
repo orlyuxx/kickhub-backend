@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\VendorsController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\ReordersController;
+use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\CustomersController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\EnterprisesController;
@@ -41,6 +42,7 @@ Route::controller(ShoppingCartsController::class)->group(function () {
     Route::get('/carts',              'index');
     Route::get('/carts/{id}',         'show');
     Route::post('/carts',             'store');
+    Route::put('/carts/{id}',         'updateQuantity');
 });
 
 Route::controller(BrandsController::class)->group(function () {
@@ -87,6 +89,14 @@ Route::controller(StoresController::class)->group(function () {
     Route::post('/stores',              'store');
     Route::put('/stores/{id}',          'update');
     Route::delete('/stores/{id}',       'destroy');
+});
+
+Route::controller(InventoryController::class)->group(function () {
+    Route::get('/inventory',                'index');
+    Route::get('/inventory/{id}',           'show');
+    Route::get('/inventory/store/{storeId}',      'getInventoryByStore');
+    Route::post('/inventory',               'store');
+    Route::post('/inventory/{storeId}',     'bulkStock');
 });
 
 Route::controller(ReordersController::class)->group(function () {

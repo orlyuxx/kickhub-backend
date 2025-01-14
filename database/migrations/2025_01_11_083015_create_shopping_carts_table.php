@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->decimal('product_price', 10, 2);
             $table->integer('quantity');
-            $table->decimal('line_total', 10, 2);
-            $table->boolean('is_checked_out')->default(false);
+            $table->decimal('line_total', 10, 2)->nullable();
+            $table->boolean('is_checked_out')->nullable()->default(false);
             $table->timestamps();
 
             // Foreign key constraints

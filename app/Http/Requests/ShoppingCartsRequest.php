@@ -28,7 +28,7 @@ class ShoppingCartsRequest extends FormRequest
             'product_id' => 'required|exists:products,product_id',
             'product_price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:1',
-            'line_total' => 'required|numeric|min:0',
+            'line_total' => 'nullable|numeric|min:0',
             'is_checked_out' => 'nullable|boolean',
         ];
     }
